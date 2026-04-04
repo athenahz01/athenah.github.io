@@ -28,6 +28,60 @@
   --sans: 'Outfit', system-ui, sans-serif;
 }
 
+/* ═══ NAV BAR ═══ */
+.site-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 900;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  height: 56px;
+  background: rgba(253,251,249,0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(212,203,192,0.3);
+  transform: translateY(-100%);
+  transition: transform 0.4s ease;
+}
+.site-nav.visible { transform: translateY(0); }
+
+.nav-logo {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--ink);
+  text-decoration: none;
+  letter-spacing: 0.06em;
+}
+
+.nav-links { display: flex; gap: 8px; }
+
+.nav-link {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--taupe);
+  padding: 8px 16px;
+  border-radius: 100px;
+  transition: all 0.25s ease;
+}
+.nav-link:hover { color: var(--ink); background: rgba(168,155,140,0.1); }
+.nav-link.active { color: var(--ink); background: rgba(168,155,140,0.15); }
+
+@media (max-width: 480px) {
+  .site-nav { padding: 0 16px; }
+  .nav-logo { font-size: 17px; }
+  .nav-link { font-size: 10px; padding: 6px 10px; letter-spacing: 0.08em; }
+  .nav-links { gap: 4px; }
+}
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
 body { font-family: var(--sans); background: var(--cream); color: var(--ink); overflow-x: hidden; }
@@ -304,8 +358,18 @@ footer { padding:40px 24px; text-align:center; background:var(--ink); border-top
 </head>
 <body>
 
+<nav class="site-nav" id="siteNav">
+  <a href="#hero" class="nav-logo">Athena</a>
+  <div class="nav-links">
+    <a href="#feedSection" class="nav-link">Shop</a>
+    <a href="#linksSection" class="nav-link">Links</a>
+    <a href="#contact" class="nav-link">Inquiries</a>
+    <a href="#aboutSection" class="nav-link">About</a>
+  </div>
+</nav>
+
 <!-- ═══ HERO ═══ -->
-<section class="hero">
+<section class="hero" id="hero">
   <div class="hero-grain"></div>
   <div class="hero-content">
     <div class="hero-avatar">
@@ -329,7 +393,7 @@ footer { padding:40px 24px; text-align:center; background:var(--ink); border-top
 </section>
 
 <!-- ═══ CONTENT FEED ═══ -->
-<section class="content-feed">
+<section class="content-feed" id="feedSection">
   <div class="section-label">Explore</div>
   <h2 class="section-title">Tap below to shop Athena's favs</h2>
   <p class="feed-intro">↓ my recent looks & lifestyle picks ↓</p>
@@ -355,7 +419,7 @@ footer { padding:40px 24px; text-align:center; background:var(--ink); border-top
 </div>
 
 <!-- ═══ LINKS ═══ -->
-<section class="links">
+<section class="links" id="linksSection">
   <div class="section-label reveal">Connect</div>
   <h2 class="section-title reveal">My Links</h2>
   <div class="links-grid">
@@ -424,7 +488,7 @@ footer { padding:40px 24px; text-align:center; background:var(--ink); border-top
   </section>
 
 <!-- ═══ ABOUT ═══ -->
-<section class="about">
+<section class="about" id="aboutSection">
     <div class="about-inner reveal">
       <div class="section-label">About</div>
       <h2 class="section-title">Nice to meet you</h2>
@@ -735,6 +799,38 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 document.querySelectorAll('section:not(.content-feed)').forEach(section => {
   section.querySelectorAll('.reveal').forEach((el, i) => { el.style.transitionDelay = `${i * 0.1}s`; });
 });
+
+// ═══ NAV BAR: show after scrolling past hero ═══
+const nav = document.getElementById('siteNav');
+const heroSection = document.querySelector('.hero');
+
+const navObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      nav.classList.remove('visible');
+    } else {
+      nav.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+navObserver.observe(heroSection);
+
+// Highlight active nav link on scroll
+const sections = document.querySelectorAll('#feedSection, #linksSection, #contact, #aboutSection');
+const navLinks = document.querySelectorAll('.nav-link');
+
+const activeObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navLinks.forEach(link => link.classList.remove('active'));
+      const activeLink = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
+      if (activeLink) activeLink.classList.add('active');
+    }
+  });
+}, { threshold: 0.3, rootMargin: '-56px 0px 0px 0px' });
+
+sections.forEach(section => activeObserver.observe(section));
 
 // Initial render
 renderGrid();
