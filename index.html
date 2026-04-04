@@ -226,6 +226,40 @@ section { padding: 80px 24px; }
 .collab-cta { display:inline-flex; align-items:center; gap:10px; padding:16px 40px; background:var(--gold); color:var(--ink); text-decoration:none; font-family:var(--sans); font-size:13px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; border-radius:100px; transition:all 0.3s ease; }
 .collab-cta:hover { background:var(--gold-light); transform:translateY(-2px); box-shadow:0 8px 32px rgba(184,151,106,0.3); }
 
+/* ═══ CONTACT FORM ═══ */
+.contact { background:var(--ink); color:var(--cream); text-align:center; }
+.contact .section-label { color:var(--gold-light); }
+.contact-sub { font-family:var(--serif); font-size:17px; font-style:italic; color:var(--taupe-light); max-width:480px; margin:0 auto 36px; line-height:1.7; }
+.contact-form { max-width:520px; margin:0 auto; text-align:left; }
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.form-group { margin-bottom:18px; }
+.form-group label { display:block; font-family:var(--sans); font-size:11px; font-weight:600; letter-spacing:0.15em; text-transform:uppercase; color:var(--taupe); margin-bottom:8px; }
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width:100%; padding:14px 16px; background:rgba(255,255,255,0.06);
+  border:1px solid rgba(168,155,140,0.25); border-radius:10px;
+  color:var(--cream); font-family:var(--sans); font-size:14px;
+  transition:border-color 0.3s ease, background 0.3s ease;
+  outline:none; appearance:none; -webkit-appearance:none;
+}
+.form-group input::placeholder,
+.form-group textarea::placeholder { color:rgba(168,155,140,0.5); }
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus { border-color:var(--gold); background:rgba(255,255,255,0.1); }
+.form-group select { cursor:pointer; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23A89B8C' fill='none' stroke-width='1.5'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 16px center; padding-right:40px; }
+.form-group select option { background:var(--ink); color:var(--cream); }
+.form-group textarea { resize:vertical; min-height:100px; }
+.form-submit {
+  display:block; width:100%; padding:16px; margin-top:8px;
+  background:var(--gold); color:var(--ink); border:none; border-radius:100px;
+  font-family:var(--sans); font-size:13px; font-weight:600; letter-spacing:0.2em;
+  text-transform:uppercase; cursor:pointer; transition:all 0.3s ease;
+}
+.form-submit:hover { background:var(--gold-light); transform:translateY(-2px); box-shadow:0 8px 32px rgba(184,151,106,0.3); }
+@media (max-width:480px) { .form-row { grid-template-columns:1fr; } }
+
 /* ═══ ABOUT ═══ */
 .about { background:var(--warm-white); }
 .about-inner { max-width:640px; margin:0 auto; text-align:center; }
@@ -329,34 +363,82 @@ footer { padding:40px 24px; text-align:center; background:var(--ink); border-top
     <a href="https://tiktok.com/@athena_hz" target="_blank" rel="noopener" class="link-btn reveal"><div class="link-icon tt">♪</div>TikTok</a>
     <a href="#" target="_blank" rel="noopener" class="link-btn reveal"><div class="link-icon yt">▶</div>YouTube</a>
     <a href="#" target="_blank" rel="noopener" class="link-btn reveal"><div class="link-icon shop">🛍</div>Shop My Looks</a>
-    <a href="#" target="_blank" rel="noopener" class="link-btn reveal"><div class="link-icon portfolio">✦</div>Portfolio & Media Kit</a>
-    <a href="mailto:athena@athenahz.com" class="link-btn reveal"><div class="link-icon email">✉</div>Business Inquiries</a>
+    <a href="#contact" class="link-btn reveal"><div class="link-icon email">✉</div>Business Inquiries</a>
   </div>
 </section>
 
-<!-- ═══ COLLAB ═══ -->
-<section class="collab">
-  <div class="section-label reveal">For Brands</div>
-  <h2 class="section-title reveal">Let's Work Together</h2>
-  <p class="collab-text reveal">I partner with brands that align with my aesthetic and values. From styled content to full campaigns — let's create something beautiful.</p>
-  <div class="collab-services reveal">
-    <span class="service-tag">UGC Content</span><span class="service-tag">Instagram Reels</span>
-    <span class="service-tag">TikTok</span><span class="service-tag">Brand Campaigns</span>
-    <span class="service-tag">Modeling</span><span class="service-tag">Drone Content</span>
-    <span class="service-tag">Event Coverage</span>
-  </div>
-  <a href="mailto:athena@athenahz.com" class="collab-cta reveal">Get In Touch →</a>
-</section>
+<!-- ═══ CONTACT FORM ═══ -->
+<section class="contact" id="contact">
+    <div class="section-label reveal">Inquiries</div>
+    <h2 class="section-title reveal" style="color:var(--cream);">Business Inquiries</h2>
+    <p class="contact-sub reveal">Interested in working together? Fill out the form below and I'll get back to you!</p>
+    <form class="contact-form reveal" action="https://formsubmit.co/zhengathenahuo@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="New Business Inquiry from your website!">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="box">
+      <input type="hidden" name="_next" value="https://athenahz01.github.io/athenah.github.io/">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="you@company.com" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="company">Brand / Company</label>
+        <input type="text" id="company" name="company" placeholder="Company name">
+      </div>
+      <div class="form-group">
+        <label for="type">Collaboration Type</label>
+        <select id="type" name="collaboration_type">
+          <option value="" disabled selected>Select one...</option>
+          <option value="UGC Content">UGC Content</option>
+          <option value="Instagram Reels">Instagram Reels</option>
+          <option value="TikTok">TikTok</option>
+          <option value="Brand Campaign">Brand Campaign</option>
+          <option value="Modeling">Modeling</option>
+          <option value="Event Coverage">Event Coverage</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="budget">Budget Range</label>
+        <select id="budget" name="budget">
+          <option value="" disabled selected>Select range...</option>
+          <option value="Under $500">Under $500</option>
+          <option value="$500 - $1,000">$500 – $1,000</option>
+          <option value="$1,000 - $3,000">$1,000 – $3,000</option>
+          <option value="$3,000+">$3,000+</option>
+          <option value="Open to discuss">Open to discuss</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="4" placeholder="Tell me about your project, timeline, and goals..." required></textarea>
+      </div>
+      <button type="submit" class="form-submit">Send Inquiry →</button>
+    </form>
+  </section>
 
 <!-- ═══ ABOUT ═══ -->
 <section class="about">
-  <div class="about-inner reveal">
-    <div class="section-label">About</div>
-    <h2 class="section-title">Nice to meet you</h2>
-    <p class="about-text">Bay Area born, currently based in New York. I create content around fashion, everyday style, travel, and the little things that make life feel curated.</p>
-    <p class="about-details">Cornell · Content Creator · Drone Photographer<br>Always chasing golden hour and the perfect outfit.</p>
-  </div>
-</section>
+    <div class="about-inner reveal">
+      <div class="section-label">About</div>
+      <h2 class="section-title">Nice to meet you</h2>
+      <p class="about-text">
+        Currently based in New York City, NY.
+        I create content around fashion, makeup,
+        and everyday lifestyle moments.
+      </p>
+      <p class="about-details">
+        UCBerkeley & IvyLeague Alumni ·<br>
+        Dressing up and Romanticizing everyday life is my Love Language.
+      </p>
+    </div>
+  </section>
 
 <footer>
   <div class="footer-name">Athena</div>
@@ -456,7 +538,7 @@ const POSTS = [
         {
             name: "NATURAL GEMSTONE CHAIN FLOWER SHORT NECKLACE",
             brand: "YVMIN x SHUSHU/TONG",
-            size: "(my necklace soldout this is a similar one)",
+            size: "(my necklace soldout on SSENSE this is a similar one)",
             price: "$111.00",
             image: "assets/products/yvmin-shushutong-necklace.jpg",
             link: "https://yvmin.com/products/yvmin-x-shushutong-natural-gemstone-chain-flower-short-necklace?_pos=8&_sid=924a34b3f&_ss=r"
@@ -611,7 +693,7 @@ function openDetail(postId) {
   if (post.reelUrl) {
     html += `
       <div style="text-align:center;padding:40px 0 0;">
-        <p style="font-family:var(--serif);font-size:16px;font-style:italic;color:var(--taupe);margin-bottom:16px;">Loved the look? Watch the full video ✦</p>
+        <p style="font-family:var(--serif);font-size:16px;font-style:italic;color:var(--taupe);margin-bottom:16px;">Loved the look? Review the post ✦</p>
         <a href="${post.reelUrl}" target="_blank" rel="noopener" style="
           display:inline-flex;align-items:center;gap:10px;padding:14px 32px;
           background:linear-gradient(135deg,#F58529,#DD2A7B,#8134AF);
@@ -621,7 +703,7 @@ function openDetail(postId) {
         " onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(221,42,123,0.3)'"
            onmouseout="this.style.transform='';this.style.boxShadow=''">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>
-          Watch on Instagram
+          View on Instagram
         </a>
       </div>
     `;
