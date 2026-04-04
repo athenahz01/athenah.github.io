@@ -378,69 +378,30 @@ footer { padding:40px 24px; text-align:center; background:var(--ink); border-top
 
 const POSTS = [
   {
-    id: "my-style-before-vs-now",
+    id: "big-guy-fitness-outfit",
     category: "fashion",
-    title: "my style before vs now",
-    cover: "", // ✏️ e.g. "assets/covers/style-before-vs-now.jpg"
-    isVideo: true,
+    title: "\"Big Guy\" Fitness Outfit",
+    cover: "assets/covers/big-guy-fitness.jpg", // ✏️ e.g. "assets/covers/style-before-vs-now.jpg"
+    isVideo: false,
     products: [
       {
-        name: "Adeline Boucle Jacket",
-        brand: "Ever New",
-        size: "",
-        price: "$119.99",
-        image: "", // ✏️ e.g. "assets/products/boucle-jacket.jpg"
-        link: "https://bit.ly/4rjSAqQ"
+        name: "Airlift Rebel Bra",
+        brand: "Alo Yoga",
+        size: "Ivory/XS",
+        price: "$88.00",
+        image: "assets/products/alo-rebel-bra.jpg", // ✏️ e.g. "assets/products/boucle-jacket.jpg"
+        link: "https://www.aloyoga.com/products/w9831r-airlift-rebel-bra-ivory"
       },
       {
-        name: "Posh Tube Top",
-        brand: "Aritzia",
-        size: "00",
+        name: "Align High-Rise Pant",
+        brand: "Lululemon",
+        size: "Black/4",
         price: "$98",
-        image: "",
-        link: "https://go.shopmy.us/p-46520242"
+        image: "assets/products/lulu-align.jpg",
+        link: "https://go.shopmy.us/p-50858457"
       },
-      {
-        name: "The Effortless Pant™ (Re)ssential Light",
-        brand: "Aritzia",
-        size: "00",
-        price: "$148",
-        image: "",
-        link: "https://go.shopmy.us/p-46522674"
-      },
-      {
-        name: "Cropped Faux Suede Trench Coat",
-        brand: "Dynamite Clothing",
-        size: "S/M",
-        price: "$149.95",
-        image: "",
-        link: "https://dynamite-clothing.pxf.io/JkK9K2"
-      },
-      {
-        name: "Mock Neck Sweater Vest",
-        brand: "Dynamite",
-        size: "XXS",
-        price: "$39.95",
-        image: "",
-        link: "https://dynamite-clothing.pxf.io/R0GkDy"
-      },
-      {
-        name: "Bella Stretch Wide Leg Jeans",
-        brand: "Quince",
-        size: "32, 24",
-        price: "$50",
-        image: "",
-        link: "https://go.magik.ly/ml/3mpaw/"
-      },
-      {
-        name: "Tony Bianco Shirley Mule",
-        brand: "Revolve",
-        size: "7.5",
-        price: "$119",
-        image: "",
-        link: "https://rvlv.me/1cGpUs"
-      }
-    ]
+    ],
+    reelUrl: "https://www.instagram.com/reel/Dc8_P1VjvY6/"
   },
   // ✏️ ADD MORE POSTS BELOW — copy the template above
   {
@@ -597,13 +558,31 @@ function openDetail(postId) {
         <div class="product-info">
           <div class="product-name">${p.name}</div>
           <div class="product-brand">${p.brand}</div>
-          ${p.size ? `<div class="product-meta">Size: ${p.size} · ${p.price}</div>` : `<div class="product-meta">${p.price}</div>`}
-          <a href="${p.link}" target="_blank" rel="noopener" class="product-link">
-            Shop Now ↗
-          </a>
+          ${p.size ? `<div class="product-meta">${p.size} · ${p.price}</div>` : `<div class="product-meta">${p.price}</div>`}
+          <a href="${p.link}" target="_blank" rel="noopener" class="product-link">Shop Now ↗</a>
         </div>
       </div>
     `).join('');
+  }
+
+  // "Watch the Reel" button
+  if (post.reelUrl) {
+    html += `
+      <div style="text-align:center;padding:40px 0 0;">
+        <p style="font-family:var(--serif);font-size:16px;font-style:italic;color:var(--taupe);margin-bottom:16px;">Loved the look? Watch the full video ✦</p>
+        <a href="${post.reelUrl}" target="_blank" rel="noopener" style="
+          display:inline-flex;align-items:center;gap:10px;padding:14px 32px;
+          background:linear-gradient(135deg,#F58529,#DD2A7B,#8134AF);
+          color:white;text-decoration:none;font-family:var(--sans);font-size:13px;
+          font-weight:600;letter-spacing:0.1em;border-radius:100px;
+          transition:all 0.3s ease;
+        " onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(221,42,123,0.3)'"
+           onmouseout="this.style.transform='';this.style.boxShadow=''">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>
+          Watch on Instagram
+        </a>
+      </div>
+    `;
   }
 
   detailBody.innerHTML = html;
