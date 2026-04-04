@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Athena HZ — Fashion · Lifestyle · Modeling</title>
+
+<!-- SEO & Open Graph -->
+<meta name="description" content="Athena — Fashion, Lifestyle & Modeling content creator. Bay Area → NYC. UGC, brand collaborations, drone content, and more.">
+<meta property="og:title" content="Athena HZ — Fashion · Lifestyle · Modeling">
+<meta property="og:description" content="Fashion, Lifestyle & Modeling content creator. Bay Area → NYC.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://athenahz.com">
+<!-- Replace with your actual headshot: -->
+<!-- <meta property="og:image" content="https://athenahz.com/assets/og-image.jpg"> -->
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- Favicon (replace with your own) -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✦</text></svg>">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --cream: #F5F0EB;
+    --warm-white: #FDFBF9;
+    --ink: #1A1714;
+    --ink-soft: #3D3832;
+    --taupe: #A89B8C;
+    --taupe-light: #D4CBC0;
+    --blush: #C8A89A;
+    --gold: #B8976A;
+    --gold-light: #D4B896;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Outfit', system-ui, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    font-family: var(--sans);
+    background: var(--cream);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ════════════════════════════════════
+     HERO
+  ════════════════════════════════════ */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: var(--warm-white);
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 20% 80%, rgba(200,168,154,0.15), transparent),
+      radial-gradient(ellipse 50% 60% at 80% 20%, rgba(184,151,106,0.1), transparent);
+    pointer-events: none;
+  }
+
+  .hero-grain {
+    position: absolute;
+    inset: 0;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-size: 200px;
+    pointer-events: none;
+  }
+
+  .hero-content {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    animation: fadeUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-avatar {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 3px solid var(--taupe-light);
+    margin: 0 auto 28px;
+    animation: fadeUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+    background: linear-gradient(135deg, var(--blush), var(--taupe));
+    overflow: hidden;
+  }
+
+  .hero-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .hero-avatar-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--serif);
+    font-size: 48px;
+    font-weight: 300;
+    color: white;
+    letter-spacing: 2px;
+  }
+
+  .hero-name {
+    font-family: var(--serif);
+    font-size: clamp(42px, 8vw, 72px);
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    line-height: 1;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+
+  .hero-tagline {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--taupe);
+    margin-bottom: 32px;
+    animation: fadeUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.25s both;
+  }
+
+  .hero-socials {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    animation: fadeUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both;
+  }
+
+  .social-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: var(--cream);
+    border: 1px solid var(--taupe-light);
+    border-radius: 100px;
+    text-decoration: none;
+    color: var(--ink-soft);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    transition: all 0.3s ease;
+  }
+
+  .social-pill:hover {
+    background: var(--ink);
+    color: var(--cream);
+    border-color: var(--ink);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(26,23,20,0.15);
+  }
+
+  .social-pill svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: var(--taupe);
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--taupe), transparent);
+  }
+
+  /* ════════════════════════════════════
+     SECTION SHARED
+  ════════════════════════════════════ */
+  section { padding: 80px 24px; }
+
+  .section-label {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-align: center;
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(28px, 5vw, 42px);
+    font-weight: 300;
+    text-align: center;
+    color: var(--ink);
+    margin-bottom: 48px;
+    letter-spacing: 0.02em;
+  }
+
+  /* ════════════════════════════════════
+     CONTENT FEED (Kerina-style)
+  ════════════════════════════════════ */
+  .content-feed {
+    background: var(--warm-white);
+    padding: 60px 24px 80px;
+  }
+
+  .feed-header-sub {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--taupe);
+    letter-spacing: 0.08em;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  .feed-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .feed-card {
+    position: relative;
+    display: block;
+    aspect-ratio: 9/16;
+    border-radius: 14px;
+    overflow: hidden;
+    cursor: pointer;
+    background: var(--taupe-light);
+    text-decoration: none;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
+  }
+
+  .feed-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(26,23,20,0.12);
+  }
+
+  .feed-card-img {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .feed-card:hover .feed-card-img { transform: scale(1.05); }
+
+  /* Placeholder gradients — will be replaced by real images */
+  .feed-card:nth-child(6n+1) .feed-card-img.placeholder { background: linear-gradient(160deg, #D4B896, #C8A89A, #A89B8C); }
+  .feed-card:nth-child(6n+2) .feed-card-img.placeholder { background: linear-gradient(160deg, #B8976A, #C8A89A, #8B7E6F); }
+  .feed-card:nth-child(6n+3) .feed-card-img.placeholder { background: linear-gradient(160deg, #C8A89A, #D4CBC0, #B8976A); }
+  .feed-card:nth-child(6n+4) .feed-card-img.placeholder { background: linear-gradient(160deg, #8B7E6F, #A89B8C, #D4B896); }
+  .feed-card:nth-child(6n+5) .feed-card-img.placeholder { background: linear-gradient(160deg, #A89B8C, #B8976A, #C8A89A); }
+  .feed-card:nth-child(6n+6) .feed-card-img.placeholder { background: linear-gradient(160deg, #D4CBC0, #C8A89A, #8B7E6F); }
+
+  .feed-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(26,23,20,0.75) 0%, rgba(26,23,20,0.1) 40%, transparent 60%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 18px;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+  }
+
+  .feed-card:hover .feed-card-overlay { opacity: 1; }
+
+  .feed-card-caption {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 500;
+    color: white;
+    line-height: 1.4;
+  }
+
+  .feed-card-tag {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-top: 6px;
+  }
+
+  .feed-card-play {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+  }
+
+  .feed-card-play svg {
+    width: 12px;
+    height: 12px;
+    fill: white;
+    margin-left: 1px;
+  }
+
+  .feed-end-msg {
+    text-align: center;
+    margin-top: 48px;
+    font-family: var(--serif);
+    font-size: 16px;
+    font-style: italic;
+    color: var(--taupe);
+  }
+
+  /* ════════════════════════════════════
+     LINKS HUB
+  ════════════════════════════════════ */
+  .links { background: var(--cream); }
+
+  .links-grid {
+    max-width: 480px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .link-btn {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 24px;
+    background: var(--warm-white);
+    border: 1px solid var(--taupe-light);
+    border-radius: 14px;
+    text-decoration: none;
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .link-btn::after {
+    content: '\2192';
+    position: absolute;
+    right: 24px;
+    font-size: 16px;
+    color: var(--taupe);
+    transition: all 0.3s ease;
+  }
+
+  .link-btn:hover {
+    background: var(--ink);
+    color: var(--cream);
+    border-color: var(--ink);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(26,23,20,0.12);
+  }
+
+  .link-btn:hover::after {
+    color: var(--gold-light);
+    transform: translateX(4px);
+  }
+
+  .link-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 18px;
+  }
+
+  .link-icon.ig { background: linear-gradient(135deg, #F58529, #DD2A7B, #8134AF); color: white; }
+  .link-icon.tt { background: #000; color: white; }
+  .link-icon.yt { background: #FF0000; color: white; }
+  .link-icon.email { background: var(--gold); color: white; }
+  .link-icon.shop { background: var(--blush); color: white; }
+  .link-icon.portfolio { background: var(--taupe); color: white; }
+
+  /* ════════════════════════════════════
+     COLLAB
+  ════════════════════════════════════ */
+  .collab {
+    background: var(--ink);
+    color: var(--cream);
+    text-align: center;
+  }
+
+  .collab .section-label { color: var(--gold-light); }
+  .collab .section-title { color: var(--cream); }
+
+  .collab-text {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--taupe-light);
+    max-width: 540px;
+    margin: 0 auto 36px;
+    font-style: italic;
+  }
+
+  .collab-services {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    max-width: 600px;
+    margin: 0 auto 40px;
+  }
+
+  .service-tag {
+    padding: 8px 20px;
+    border: 1px solid var(--taupe);
+    border-radius: 100px;
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--taupe-light);
+    transition: all 0.3s ease;
+  }
+
+  .service-tag:hover {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--ink);
+  }
+
+  .collab-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 40px;
+    background: var(--gold);
+    color: var(--ink);
+    text-decoration: none;
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    border-radius: 100px;
+    transition: all 0.3s ease;
+  }
+
+  .collab-cta:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(184,151,106,0.3);
+  }
+
+  /* ════════════════════════════════════
+     ABOUT (bottom)
+  ════════════════════════════════════ */
+  .about { background: var(--warm-white); }
+
+  .about-inner {
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .about-text {
+    font-family: var(--serif);
+    font-size: 20px;
+    line-height: 1.8;
+    color: var(--ink-soft);
+    font-weight: 400;
+    font-style: italic;
+    margin-bottom: 24px;
+  }
+
+  .about-details {
+    font-family: var(--sans);
+    font-size: 14px;
+    color: var(--taupe);
+    line-height: 1.7;
+    letter-spacing: 0.02em;
+  }
+
+  /* ════════════════════════════════════
+     FOOTER
+  ════════════════════════════════════ */
+  footer {
+    padding: 40px 24px;
+    text-align: center;
+    background: var(--ink);
+    border-top: 1px solid rgba(168,155,140,0.15);
+  }
+
+  .footer-name {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--taupe);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .footer-copy {
+    font-family: var(--sans);
+    font-size: 11px;
+    color: rgba(168,155,140,0.5);
+    margin-top: 8px;
+    letter-spacing: 0.1em;
+  }
+
+  /* ════════════════════════════════════
+     ANIMATIONS
+  ════════════════════════════════════ */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ════════════════════════════════════
+     RESPONSIVE
+  ════════════════════════════════════ */
+  @media (max-width: 768px) {
+    .feed-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4px;
+    }
+
+    .feed-card { border-radius: 10px; }
+
+    .feed-card-overlay {
+      opacity: 1;
+      background: linear-gradient(to top, rgba(26,23,20,0.65) 0%, transparent 50%);
+    }
+
+    .feed-card-caption { font-size: 11px; }
+    .feed-card-tag { font-size: 9px; }
+  }
+
+  @media (max-width: 480px) {
+    .hero-socials {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    section { padding: 60px 16px; }
+    .content-feed { padding: 48px 16px 64px; }
+
+    .feed-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3px;
+    }
+
+    .feed-card { border-radius: 8px; }
+    .feed-card-play { width: 24px; height: 24px; top: 10px; right: 10px; }
+    .feed-card-play svg { width: 10px; height: 10px; }
+    .feed-card-overlay { padding: 12px; }
+
+    .collab-services { gap: 8px; }
+    .service-tag { font-size: 11px; padding: 6px 14px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════
+     HERO
+═══════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-grain"></div>
+  <div class="hero-content">
+    <div class="hero-avatar">
+      <!-- ✏️ REPLACE: Add your headshot image to /assets/avatar.jpg -->
+      <!-- <img src="assets/avatar.jpg" alt="Athena"> -->
+      <span class="hero-avatar-placeholder">A</span>
+    </div>
+    <h1 class="hero-name">Athena</h1>
+    <p class="hero-tagline">Fashion · Lifestyle · Modeling</p>
+    <div class="hero-socials">
+      <a href="https://instagram.com/athena_hz" target="_blank" rel="noopener" class="social-pill">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+        @athena_hz
+      </a>
+      <a href="https://tiktok.com/@athena_hz" target="_blank" rel="noopener" class="social-pill">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1 0-5.78c.29 0 .57.04.84.11v-3.5a6.37 6.37 0 0 0-.84-.05A6.34 6.34 0 0 0 3.15 15.2a6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.71a8.27 8.27 0 0 0 3.76.92V6.69z"/></svg>
+        TikTok
+      </a>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     CONTENT FEED
+     ✏️ HOW TO ADD YOUR POSTS:
+     1. Save your Reel/post cover images to /assets/post-1.jpg, post-2.jpg, etc.
+     2. Replace the placeholder class with: style="background-image: url('assets/post-1.jpg')"
+     3. Update the href to link to your actual Instagram post
+     4. Update the caption and tag
+═══════════════════════════════════════ -->
+<section class="content-feed">
+  <div class="section-label">Latest</div>
+  <h2 class="section-title">Tap to Shop</h2>
+  <p class="feed-header-sub">↓ my recent posts & reels ↓</p>
+
+  <div class="feed-grid">
+
+    <a href="https://instagram.com/athena_hz" target="_blank" rel="noopener" class="feed-card reveal">
+      <div class="feed-card-img placeholder"></div>
+      <div class="feed-card-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+      <div class="feed-card-overlay">
+        <div class="feed-card-caption">spring outfit check ✿</div>
+        <div class="feed-card-tag">Fashion</div>
+      </div>
+    </a>
+
+    <a href="https://instagram.com/athena_hz" target="_blank" rel="noopener" class="feed-card reveal">
+      <div class="feed-card-img placeholder"></div>
+      <div class="feed-card-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+      <div class="feed-card-overlay">
+        <div class="feed-card-caption">golden hour drone shots</div>
+        <div class="feed-card-tag">Lifestyle</div>
+      </div>
+    </a>
+
+    <a href="https://instagram.com/athena_hz" target="_blank" rel="noopener" class="feed-card reveal">
+      <div class="feed-card-img placeholder"></div>
+      <div class="feed-card-overlay">
+        <div class="feed-card-caption">NYC editorial shoot</div>
+        <div class="feed-card-tag">Modeling</div>
+      </div>
+    </a>
+
+    <a href="https://instagram.com/athena_hz" target="_blank" rel="noopener" class="feed-card reveal">
+      <div class="feed-card-img placeholder"></div>
+      <div class="feed-card-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+      <div class="feed-card-overlay">
+        <div class="feed-card-caption">5 ways to style a blazer</div>
+        <div class="feed-card-tag">Fashion</div>
+      </div>
+    </a>
+
+    <a href="https://instagram.com/athena_hz" target="_blank" rel="noopener" class="feed-card reveal">
+      <div class="feed-card-img placeholder"></div>
+      <div class="feed-card-overlay">
+        <div class="feed-card-caption">day in my life @ Cornell</div>
+        <div class="feed-card-tag">Lifestyle</div>
+      </div>
+    </a>
+
+    <a href="https://instagram.com/athena_hz" target="_blank" rel="noopener" class="feed-card reveal">
+      <div class="feed-card-img placeholder"></div>
+      <div class="feed-card-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+      <div class="feed-card-overlay">
+        <div class="feed-card-caption">grwm: night out edition</div>
+        <div class="feed-card-tag">Fashion</div>
+      </div>
+    </a>
+
+    <a href="https://instagram.com/athena_hz" target="_blank" rel="noopener" class="feed-card reveal">
+      <div class="feed-card-img placeholder"></div>
+      <div class="feed-card-overlay">
+        <div class="feed-card-caption">travel vlog: weekend in LA</div>
+        <div class="feed-card-tag">Lifestyle</div>
+      </div>
+    </a>
+
+    <a href="https://instagram.com/athena_hz" target="_blank" rel="noopener" class="feed-card reveal">
+      <div class="feed-card-img placeholder"></div>
+      <div class="feed-card-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+      <div class="feed-card-overlay">
+        <div class="feed-card-caption">summer haul 2026</div>
+        <div class="feed-card-tag">Fashion</div>
+      </div>
+    </a>
+
+    <a href="https://instagram.com/athena_hz" target="_blank" rel="noopener" class="feed-card reveal">
+      <div class="feed-card-img placeholder"></div>
+      <div class="feed-card-overlay">
+        <div class="feed-card-caption">sunset from the sky 🌅</div>
+        <div class="feed-card-tag">Drone</div>
+      </div>
+    </a>
+
+    <a href="https://instagram.com/athena_hz" target="_blank" rel="noopener" class="feed-card reveal">
+      <div class="feed-card-img placeholder"></div>
+      <div class="feed-card-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+      <div class="feed-card-overlay">
+        <div class="feed-card-caption">thrift flip challenge</div>
+        <div class="feed-card-tag">Fashion</div>
+      </div>
+    </a>
+
+    <a href="https://instagram.com/athena_hz" target="_blank" rel="noopener" class="feed-card reveal">
+      <div class="feed-card-img placeholder"></div>
+      <div class="feed-card-overlay">
+        <div class="feed-card-caption">café hopping in Ithaca ☕</div>
+        <div class="feed-card-tag">Lifestyle</div>
+      </div>
+    </a>
+
+    <a href="https://instagram.com/athena_hz" target="_blank" rel="noopener" class="feed-card reveal">
+      <div class="feed-card-img placeholder"></div>
+      <div class="feed-card-overlay">
+        <div class="feed-card-caption">behind the scenes 📸</div>
+        <div class="feed-card-tag">Modeling</div>
+      </div>
+    </a>
+
+  </div>
+
+  <p class="feed-end-msg">You went through all my posts — love you for that ♡</p>
+</section>
+
+<!-- ═══════════════════════════════════════
+     LINKS HUB
+     ✏️ Replace # with your real links
+═══════════════════════════════════════ -->
+<section class="links">
+  <div class="section-label reveal">Connect</div>
+  <h2 class="section-title reveal">My Links</h2>
+  <div class="links-grid">
+    <a href="https://instagram.com/athena_hz" target="_blank" rel="noopener" class="link-btn reveal">
+      <div class="link-icon ig">📸</div>
+      Instagram — @athena_hz
+    </a>
+    <a href="https://tiktok.com/@athena_hz" target="_blank" rel="noopener" class="link-btn reveal">
+      <div class="link-icon tt">♪</div>
+      TikTok
+    </a>
+    <a href="#" target="_blank" rel="noopener" class="link-btn reveal">
+      <div class="link-icon yt">▶</div>
+      YouTube
+    </a>
+    <a href="#" target="_blank" rel="noopener" class="link-btn reveal">
+      <div class="link-icon shop">🛍</div>
+      Shop My Looks
+    </a>
+    <a href="#" target="_blank" rel="noopener" class="link-btn reveal">
+      <div class="link-icon portfolio">✦</div>
+      Portfolio & Media Kit
+    </a>
+    <a href="mailto:athena@athenahz.com" class="link-btn reveal">
+      <div class="link-icon email">✉</div>
+      Business Inquiries
+    </a>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     COLLABORATE
+═══════════════════════════════════════ -->
+<section class="collab">
+  <div class="section-label reveal">For Brands</div>
+  <h2 class="section-title reveal">Let's Work Together</h2>
+  <p class="collab-text reveal">
+    I partner with brands that align with my aesthetic and values.
+    From styled content to full campaigns — let's create something beautiful.
+  </p>
+  <div class="collab-services reveal">
+    <span class="service-tag">UGC Content</span>
+    <span class="service-tag">Instagram Reels</span>
+    <span class="service-tag">TikTok</span>
+    <span class="service-tag">Brand Campaigns</span>
+    <span class="service-tag">Modeling</span>
+    <span class="service-tag">Drone Content</span>
+    <span class="service-tag">Event Coverage</span>
+  </div>
+  <a href="mailto:athena@athenahz.com" class="collab-cta reveal">
+    Get In Touch →
+  </a>
+</section>
+
+<!-- ═══════════════════════════════════════
+     ABOUT
+═══════════════════════════════════════ -->
+<section class="about">
+  <div class="about-inner reveal">
+    <div class="section-label">About</div>
+    <h2 class="section-title">Nice to meet you</h2>
+    <p class="about-text">
+      Bay Area born, currently based in New York.
+      I create content around fashion, everyday style,
+      travel, and the little things that make life feel curated.
+    </p>
+    <p class="about-details">
+      Cornell · Content Creator · Drone Photographer<br>
+      Always chasing golden hour and the perfect outfit.
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════ -->
+<footer>
+  <div class="footer-name">Athena</div>
+  <div class="footer-copy">© 2026 · All rights reserved</div>
+</footer>
+
+<!-- ═══════════════════════════════════════
+     SCRIPTS
+═══════════════════════════════════════ -->
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Stagger feed cards
+  document.querySelectorAll('.feed-grid .feed-card').forEach((card, i) => {
+    card.style.transitionDelay = `${i * 0.06}s`;
+  });
+
+  // Stagger other reveals
+  document.querySelectorAll('section:not(.content-feed)').forEach(section => {
+    const reveals = section.querySelectorAll('.reveal');
+    reveals.forEach((el, i) => {
+      el.style.transitionDelay = `${i * 0.1}s`;
+    });
+  });
+</script>
+
+</body>
+</html>
