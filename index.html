@@ -280,6 +280,109 @@ section { padding: 80px 24px; }
 .collab-cta { display:inline-flex; align-items:center; gap:10px; padding:16px 40px; background:var(--gold); color:var(--ink); text-decoration:none; font-family:var(--sans); font-size:13px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; border-radius:100px; transition:all 0.3s ease; }
 .collab-cta:hover { background:var(--gold-light); transform:translateY(-2px); box-shadow:0 8px 32px rgba(184,151,106,0.3); }
 
+/* ═══ MY PICKS ═══ */
+.feed-grid.picks-mode {
+  display: block;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.picks-category { margin-bottom: 40px; }
+
+.picks-cat-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+  padding-left: 4px;
+}
+
+.picks-cat-emoji { font-size: 22px; }
+
+.picks-cat-name {
+  font-family: var(--serif);
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--ink);
+  letter-spacing: 0.02em;
+}
+
+.picks-scroll {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 8px;
+  scrollbar-width: none;
+}
+.picks-scroll::-webkit-scrollbar { display: none; }
+
+.pick-card {
+  flex: 0 0 170px;
+  scroll-snap-align: start;
+  text-decoration: none;
+  color: var(--ink);
+  transition: transform 0.3s ease;
+}
+.pick-card:hover { transform: translateY(-4px); }
+
+.pick-card-img {
+  width: 170px;
+  height: 210px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--cream);
+  margin-bottom: 10px;
+}
+.pick-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.pick-card-img-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--taupe-light), var(--blush));
+}
+
+.pick-card-info { padding: 0 2px; }
+
+.pick-card-name {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.3;
+  margin-bottom: 3px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.pick-card-brand {
+  font-family: var(--sans);
+  font-size: 11px;
+  color: var(--taupe);
+  margin-bottom: 4px;
+}
+
+.pick-card-price {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gold);
+}
+
+@media (max-width: 480px) {
+  .pick-card { flex: 0 0 140px; }
+  .pick-card-img { width: 140px; height: 175px; border-radius: 10px; }
+  .pick-card-name { font-size: 12px; }
+  .picks-cat-name { font-size: 20px; }
+}
+
 /* ═══ CONTACT FORM ═══ */
 .contact { background:var(--ink); color:var(--cream); text-align:center; }
 .contact .section-label { color:var(--gold-light); }
@@ -400,7 +503,7 @@ footer { padding:40px 24px; text-align:center; background:var(--ink); border-top
 
   <div class="feed-tabs">
     <button class="feed-tab active" data-tab="fashion">Fashion</button>
-    <button class="feed-tab" data-tab="lifestyle">Lifestyle</button>
+    <button class="feed-tab" data-tab="picks">My Picks</button>
   </div>
 
   <div class="feed-grid" id="feedGrid"></div>
@@ -684,6 +787,37 @@ const POSTS = [
   }
 ];
 
+// ╔══════════════════════════════════════════════════════════════╗
+// ║  MY PICKS — Curated product recommendations by category     ║
+// ║  Add products with: name, brand, price, image, link         ║
+// ╚══════════════════════════════════════════════════════════════╝
+const PICKS = [
+  {
+    category: "Makeup",
+    emoji: "💄",
+    items: [
+        { name: "Peptide lip tint", brand: "Rhode Skin", price: "$20.00", color: "toast", image: "assets/picks/dior-lip.jpg", link: "https://go.shopmy.us/p-50894203" },
+      // ✏️ Add your makeup picks here
+      // { name: "Lip Glow Oil", brand: "Dior", price: "$40", image: "assets/picks/dior-lip.jpg", link: "https://..." },
+    ]
+  },
+  {
+    category: "Skincare",
+    emoji: "✨",
+    items: []
+  },
+  {
+    category: "Home",
+    emoji: "🕯",
+    items: []
+  },
+  {
+    category: "Accessories",
+    emoji: "👜",
+    items: []
+  }
+];
+
 // ═══ RENDER GRID ═══
 let activeTab = "fashion";
 const grid = document.getElementById("feedGrid");
@@ -692,22 +826,60 @@ const detailBody = document.getElementById("detailBody");
 const detailHeaderTitle = document.getElementById("detailHeaderTitle");
 
 function renderGrid() {
-  const filtered = POSTS.filter(p => p.category === activeTab);
-  grid.innerHTML = filtered.map((post, i) => `
-    <div class="feed-card" data-id="${post.id}" style="animation-delay:${i * 0.06}s">
-      <div class="feed-card-img ${post.cover ? '' : 'placeholder'}" ${post.cover ? `style="background-image:url('${post.cover}')"` : ''}></div>
-      ${post.isVideo ? `<div class="feed-card-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>` : ''}
-      <div class="feed-card-overlay">
-        <div class="feed-card-caption">${post.title}</div>
-        <div class="feed-card-tag">${post.category}</div>
+  if (activeTab === "fashion") {
+    const filtered = POSTS.filter(p => p.category === "fashion");
+    grid.innerHTML = filtered.map((post, i) => `
+      <div class="feed-card" data-id="${post.id}" style="animation-delay:${i * 0.06}s">
+        <div class="feed-card-img ${post.cover ? '' : 'placeholder'}" ${post.cover ? `style="background-image:url('${post.cover}')"` : ''}></div>
+        ${post.isVideo ? `<div class="feed-card-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>` : ''}
+        <div class="feed-card-overlay">
+          <div class="feed-card-caption">${post.title}</div>
+          <div class="feed-card-tag">${post.category}</div>
+        </div>
       </div>
-    </div>
-  `).join('');
-
-  // Attach click handlers
-  grid.querySelectorAll('.feed-card').forEach(card => {
-    card.addEventListener('click', () => openDetail(card.dataset.id));
-  });
+    `).join('');
+    grid.classList.remove('picks-mode');
+    grid.querySelectorAll('.feed-card').forEach(card => {
+      card.addEventListener('click', () => openDetail(card.dataset.id));
+    });
+  } else if (activeTab === "picks") {
+    const hasItems = PICKS.some(cat => cat.items.length > 0);
+    if (!hasItems) {
+      grid.innerHTML = `
+        <div class="picks-empty" style="grid-column:1/-1;text-align:center;padding:60px 0;">
+          <p style="font-family:var(--serif);font-size:22px;color:var(--ink);margin-bottom:8px;">Coming soon ✦</p>
+          <p style="font-family:var(--sans);font-size:13px;color:var(--taupe);">My curated picks are on the way — check back soon!</p>
+        </div>`;
+      grid.classList.add('picks-mode');
+      return;
+    }
+    grid.classList.add('picks-mode');
+    grid.innerHTML = PICKS.filter(cat => cat.items.length > 0).map(cat => `
+      <div class="picks-category">
+        <div class="picks-cat-header">
+          <span class="picks-cat-emoji">${cat.emoji}</span>
+          <span class="picks-cat-name">${cat.category}</span>
+        </div>
+        <div class="picks-scroll">
+          ${cat.items.map(item => `
+            <a href="${item.link}" target="_blank" rel="noopener" class="pick-card">
+              <div class="pick-card-img">
+                ${item.image
+                  ? `<img src="${item.image}" alt="${item.name}" loading="lazy">`
+                  : `<div class="pick-card-img-placeholder"></div>`
+                }
+              </div>
+              <div class="pick-card-info">
+                <div class="pick-card-name">${item.name}</div>
+                <div class="pick-card-brand">${item.brand}</div>
+                <div class="pick-card-price">${item.price}</div>
+              </div>
+            </a>
+          `).join('')}
+        </div>
+      </div>
+    `).join('');
+  }
 }
 
 // ═══ TABS ═══
