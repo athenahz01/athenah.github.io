@@ -432,7 +432,16 @@ footer { padding:40px 24px; text-align:center; background:var(--ink); border-top
 .reveal { opacity:0; transform:translateY(30px); transition:opacity 0.8s ease, transform 0.8s cubic-bezier(0.22,1,0.36,1); }
 .reveal.visible { opacity:1; transform:translateY(0); }
 
+
 /* ═══ RESPONSIVE ═══ */
+@media (min-width: 769px) {
+  .feed-grid {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 4px;
+  }
+  .feed-card { border-radius: 10px; }
+}
+
 @media (max-width:768px) {
   .feed-grid { gap:4px; }
   .feed-card { border-radius:10px; }
